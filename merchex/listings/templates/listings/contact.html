@@ -1,0 +1,15 @@
+{% extends "listings/base.html" %} {% block content %}
+<h1>Contactez-nous</h1>
+
+{% comment %} novalidate pour désactiver la validation HTML5 au profit de la
+validation Django {% endcomment %}
+<form action="" method="post" novalidate>
+  {% comment %} as_p pour emballer chaque input dans une balise
+  <p>
+    {% endcomment %} {% csrf_token %} {{form.as_p}}
+
+    <input type="submit" value="Envoyer" />
+  </p>
+</form>
+
+{% endblock content %}

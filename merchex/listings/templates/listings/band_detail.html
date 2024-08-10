@@ -1,0 +1,29 @@
+{% extends 'listings/base.html' %} {% block content %}
+
+<h2>{{ band.name }}</h2>
+
+<ul>
+  {% comment %} L'attribut get_genre_display affiche la valeur lisible du choix de genre plutôt que la valeur stockée en base de données  {% endcomment %}
+  <li>Genre : {{ band.get_genre_display }}</li>
+  <li>Année de formation : {{ band.year_formed }}</li>
+  <li>Actif : {{ band.active|yesno:"Oui,Non" }}</li>
+  {% if band.official_homepage %}
+  <li>
+    <a href="{{ band.official_homepage }}">{{ band.official_homepage }}</a>
+  </li>
+  {% endif %}
+</ul>
+
+<p>{{ band.biography }}</p>
+
+<h3>Annonces du groupe</h3>
+<ul>
+    {% for listing in band.listing_set.all %}
+    <li><a href="{% url "listing-detail" listing.id %}">{{ listing.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'band-list' %}">Retour à la liste des groupes</a>
+<a href="{% url 'band-update' band.id %}">Modifier le groupe</a>
+
+{% endblock %}

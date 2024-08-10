@@ -1,0 +1,17 @@
+{% extends "listings/base.html" %} {% block content %}
+
+<h1>Hello Django !</h1>
+<p>{{listings|length}} annonces:</p>
+<a href="{% url "listing-create" %}" >Creer une annonce</a>
+<ul>
+  {% for listing in listings %}
+  <li style="position: relative; margin-bottom: 20px;">
+    <a href="{% url "listing-detail" listing.id %}">{{ listing.title|upper }}</a>
+    <a href="{% url "listing-update" listing.id %}" style="position: absolute; bottom: -5px; right: 5;">Editer</a>
+    <a href="{% url "listing-delete" listing.id %}" style="position: absolute; bottom: -5px; right: 60px; color: red;">Supprimer</a>
+
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock content %}

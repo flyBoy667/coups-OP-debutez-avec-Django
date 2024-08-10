@@ -1,0 +1,38 @@
+{% load static %}
+<html>
+  <head>
+    <title>Merchex</title>
+    <link rel="stylesheet" href="{% static 'listings/styles.css' %}" />
+    
+  </head>
+  <body>
+    <nav>
+      <a href="{% url "band-list" %}">Groupes</a>
+      <a href="{% url "listing-list" %}">Listings</a>
+      <a href="{% url "about" %}">A Propos</a>
+      <a href="{% url "contact" %}">Contact</a>
+    </nav>
+    
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" style="padding: 10px; margin-bottom: 15px; border: 1px solid transparent; border-radius: 4px; 
+        {% if message.tags == 'success' %}
+            color: #155724; background-color: #d4edda; border-color: #c3e6cb;
+        {% elif message.tags == 'info' %}
+            color: #0c5460; background-color: #d1ecf1; border-color: #bee5eb;
+        {% elif message.tags == 'warning' %}
+            color: #856404; background-color: #fff3cd; border-color: #ffeeba;
+        {% elif message.tags == 'error' %}
+            color: #721c24; background-color: #f8d7da; border-color: #f5c6cb;
+        {% else %}
+            color: #383d41; background-color: #e2e3e5; border-color: #d6d8db;
+        {% endif %}
+        ">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+    {% block content %}{% endblock content %}
+  </body>
+</html>

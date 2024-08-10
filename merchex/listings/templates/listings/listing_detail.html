@@ -1,0 +1,16 @@
+{% extends "listings/base.html" %} {% block content %}
+<h1>{{ listing.title }}</h1>
+<ul>
+    {% if listing.descprition %}
+    <li>{{ listing.descprition }}</li>
+    {% endif %}
+    <li>{{ listing.sold|yesno:"Vendu,En stock" }}</li>
+    <li>{{ listing.year }}</li>
+    <li>{{ listing.type }}</li>
+    <li><a href="{% url "band-detail" listing.band.id %}">{{ listing.band }}</a></li>
+</ul>
+<a href="{% url 'listing-list' %}">Retour à la liste des groupes</a>
+<a href="{% url 'listing-update' listing.id %}">Modifier l'annonce</a>
+{% endblock content %}
+
+

@@ -1,0 +1,10 @@
+{% extends "listings/base.html" %} {% block content %}
+<h1>Email sent</h1>
+<div class="card fade-in">
+  <h2>Confirmation d'envoi</h2>
+  <p>Votre email a été envoyé avec succès. Merci de nous avoir contactés !</p>
+  <p>Nous vous répondrons dans les plus brefs délais.</p>
+  <a href="{% url 'band-list' %}" class="button">Retour à la page d'accueil</a>
+</div>
+
+{% endblock content %}
